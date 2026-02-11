@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class Movement : GamePhysics
 {
-    public float acceleration;
-    public float deceleration;
-    public float maxspeed;
+    public float acceleration { get; private set; }
+    public float deceleration { get; private set; }
+    public float maxspeed { get; private set; }
     public Vector2 moveDirection { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void InitializeMovement()
+    protected void InitializeMovement(float Maxspeed, float Acceleration, float Deceleration, float Gravity)
     {
-        InitializePhysics();
+        maxspeed = Maxspeed;
+        acceleration = Acceleration;
+        deceleration = Deceleration;
+        InitializePhysics(Gravity);
     }
 
     protected void MoveDirection(Vector2 MoveDirection)
@@ -17,7 +20,7 @@ public class Movement : GamePhysics
         moveDirection = MoveDirection;
     }
 
-    private void Accelerate()
+    virtual public void Accelerate()
     {   //If Accelerating to above Maxspeed, slow down until reaching maxspeed;
         if ((GetHorizontalSpeed() + moveDirection * acceleration * Time.deltaTime).magnitude > maxspeed)
         {
@@ -38,7 +41,7 @@ public class Movement : GamePhysics
         }
     }
 
-    private void Decelerate()
+    virtual public void Decelerate()
     {
         HorizontalMovement(GetHorizontalSpeed().normalized * (GetHorizontalSpeed().magnitude - deceleration * Time.deltaTime));
         if (GetHorizontalSpeed().magnitude <= deceleration * Time.deltaTime)

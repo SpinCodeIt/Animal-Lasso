@@ -5,16 +5,17 @@ public class GamePhysics : MonoBehaviour
     //Components
     private Rigidbody rb;
     //Physics Variables
-    private float gravity = 0.1f;
+    private float gravity;
     private float xspeed;
     private float yspeed;
     private float zspeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void InitializePhysics()
+    protected void InitializePhysics(float Gravity)
     {
         rb = GetComponent<Rigidbody>();
+        gravity = Gravity;
     }
 
     //Checks if the rigidbody is grounded
@@ -29,10 +30,10 @@ public class GamePhysics : MonoBehaviour
         return yspeed ;
     }
     
-    protected void Jump(float JumpSpeed)
-    {
-        yspeed = JumpSpeed;
-    }
+    //protected void Jump(float JumpSpeed)
+    //{
+        //yspeed = JumpSpeed;
+    //}
 
     protected Vector2 GetHorizontalSpeed()
     {

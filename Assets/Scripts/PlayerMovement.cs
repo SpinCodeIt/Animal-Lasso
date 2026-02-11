@@ -3,13 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : Movement
 {
-    public float jumpSpeed;
+    //public float jumpSpeed;
     public Animator animator;
-    public PlayerInput input;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InitializeMovement();
+        InitializeMovement(8f, 10f, 5f, 0f);
     }
 
     void OnMove(InputValue value)
@@ -26,10 +25,10 @@ public class PlayerMovement : Movement
         }
     }
 
-    void OnJump()
-    {
-        Jump(jumpSpeed);
-    }
+    //void OnJump()
+    //{
+        //Jump(jumpSpeed);
+    //}
 
     // Update is called once per frame
     void Update()
