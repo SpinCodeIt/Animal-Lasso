@@ -5,7 +5,7 @@ public class Movement : GamePhysics
     public float acceleration;
     public float deceleration;
     public float maxspeed;
-    private Vector2 moveDirection;
+    public Vector2 moveDirection { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void InitializeMovement()
     {

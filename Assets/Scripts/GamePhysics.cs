@@ -5,7 +5,7 @@ public class GamePhysics : MonoBehaviour
     //Components
     private Rigidbody rb;
     //Physics Variables
-    private float gravity = -0.1f;
+    private float gravity = 0.1f;
     private float xspeed;
     private float yspeed;
     private float zspeed;
@@ -21,9 +21,10 @@ public class GamePhysics : MonoBehaviour
     private float Grounded()
     {
         RaycastHit hit;
-        if (rb.SweepTest(Vector3.down, out hit, yspeed * Time.deltaTime))
+        if (rb.SweepTest(Vector3.down, out hit, -yspeed * Time.deltaTime))
         {
-            return hit.distance;
+            return -hit.distance;
+            
         }
         return yspeed ;
     }
@@ -49,7 +50,7 @@ public class GamePhysics : MonoBehaviour
         //Gravity
         yspeed -= gravity;
         yspeed = Grounded();
-        rb.MovePosition(rb.position - new Vector3(xspeed, yspeed, zspeed) * Time.deltaTime);
+        rb.MovePosition(rb.position + new Vector3(xspeed, yspeed, zspeed) * Time.deltaTime);
     }
 
 }
