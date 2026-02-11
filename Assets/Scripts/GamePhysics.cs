@@ -10,6 +10,7 @@ public class GamePhysics : MonoBehaviour
     private float yspeed;
     private float zspeed;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected void InitializePhysics()
     {
@@ -32,6 +33,10 @@ public class GamePhysics : MonoBehaviour
         yspeed = JumpSpeed;
     }
 
+    protected Vector2 GetHorizontalSpeed()
+    {
+        return new Vector2(xspeed, zspeed);
+    }
     protected void HorizontalMovement(Vector2 HorizontalSpeed)
     {
         xspeed = HorizontalSpeed.x;
